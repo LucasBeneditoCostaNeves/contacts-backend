@@ -1,7 +1,12 @@
 import { Router } from "express";
-import { userControllers } from "../controllers/users.controller";
+import {
+  userGetControllers,
+  userPostControllers,
+} from "../controllers/users.controller";
+import { verifyUserExist } from "../middlewares/users.middlewares";
 
 export const UsersRoutes: Router = Router();
 
 //Exemplos:
-UsersRoutes.get("/", userControllers);
+UsersRoutes.post("/", verifyUserExist, userPostControllers);
+UsersRoutes.get("/", userGetControllers);
