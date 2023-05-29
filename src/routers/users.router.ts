@@ -6,12 +6,12 @@ import {
   userPostControllers,
 } from "../controllers/users.controller";
 import { verifyUserExist } from "../middlewares/verifyUserExist.middlewares";
-import { verifyIfAdmin } from "../middlewares/verifyToken.middlewares";
+import { verifyToken } from "../middlewares/verifyToken.middlewares";
 
 export const UsersRoutes: Router = Router();
 
 //Exemplos:
 UsersRoutes.post("/", verifyUserExist, userPostControllers);
 UsersRoutes.get("/", userGetControllers);
-UsersRoutes.patch("/", verifyIfAdmin, userPatchControllers);
-UsersRoutes.delete("/", verifyIfAdmin, userDeleteController);
+UsersRoutes.patch("/", verifyToken, userPatchControllers);
+UsersRoutes.delete("/", verifyToken, userDeleteController);

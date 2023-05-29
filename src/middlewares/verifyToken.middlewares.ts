@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { AppError } from "../errors";
 
-export async function verifyIfAdmin(
+export async function verifyToken(
   req: Request,
   res: Response,
   next: NextFunction
