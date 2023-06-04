@@ -12,6 +12,6 @@ export const UsersRoutes: Router = Router();
 
 //Exemplos:
 UsersRoutes.post("/", verifyUserExist, userPostControllers);
-UsersRoutes.get("/", userGetControllers);
+UsersRoutes.get("/", verifyToken, userGetControllers);
 UsersRoutes.patch("/", verifyToken, userPatchControllers);
 UsersRoutes.delete("/", verifyToken, userDeleteController);

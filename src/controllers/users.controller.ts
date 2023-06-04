@@ -17,9 +17,9 @@ export async function userPostControllers(req: Request, res: Response) {
 
 export async function userGetControllers(req: Request, res: Response) {
   //Chamando nossa função service responsável pela lógica
-  const returning = await userGetService();
+  const returning = await userGetService(req.user.id);
   //Retornando o objeto retornando pelo service
-  return res.status(201).send(returning);
+  return res.status(200).send(returning);
 }
 
 export async function userPatchControllers(req: Request, res: Response) {

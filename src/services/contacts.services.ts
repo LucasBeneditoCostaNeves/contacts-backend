@@ -29,9 +29,12 @@ export async function contactsGetService(id: any) {
   const repository: any = AppDataSource.getRepository(Contacts);
 
   //Capturando todos os dados da tabela
+  console.log(id);
   const arryDeDados: any = await repository.find({
     where: {
-      user: Number(id!),
+      user: {
+        id: id,
+      },
     },
   });
   //Retornando os dados da tabela
@@ -43,15 +46,16 @@ export async function contactsDeleteService(userId: any, id: any) {
 
   const contact: any = await repository.findOne({
     where: {
-      user: userId,
+      user: {
+        id: userId,
+      },
       id: id,
     },
   });
   if (!contact) {
     throw new AppError("Contact no already exists", 404);
-  } else {
-    repository.delete(contact!);
   }
+  repository.remove(contact!);
 }
 
 export const contactsUpdateService = async (

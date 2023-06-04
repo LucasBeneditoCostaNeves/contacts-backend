@@ -17,21 +17,18 @@ export async function userPostService(data: any) {
   return returnUserPostSchema.parse(dataUser);
 }
 
-export async function userGetService() {
+export async function userGetService(id: number) {
   //Capturando a Tabela
-  const repository: Repository<User> = AppDataSource.getRepository(User);
+  const repository: any = AppDataSource.getRepository(User);
 
   //Capturando todos os dados da tabela
-  const dataArray: Array<User> = await repository.find();
+  const dataArray: any = await repository.findOneBy({
+    id: id,
+  });
 
-  const newDataArray = [];
+  const newData = returnUserPostSchema.parse(dataArray);
 
-  //Serializando os dados para retorno
-  for (let i = 0; i < dataArray.length; i++) {
-    //Adicionando os dados serializados para o array que vai armazena-lo
-    newDataArray.push(returnUserPostSchema.parse(dataArray[i]));
-  }
-  return newDataArray;
+  return newData;
 }
 
 export const userUpdateService = async (dadoAtualizado: any, idUser: any) => {
