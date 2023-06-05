@@ -29,7 +29,6 @@ export async function contactsGetService(id: any) {
   const repository: any = AppDataSource.getRepository(Contacts);
 
   //Capturando todos os dados da tabela
-  console.log(id);
   const arryDeDados: any = await repository.find({
     where: {
       user: {
